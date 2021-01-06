@@ -1,0 +1,32 @@
+def sol(numOfCities, cities, xC, yC, numOfQueries, queries):
+    d = {}
+    # store them with the coordinates
+    for i, city in enumerate(cities):
+        d[city] = (xC[i], yC[i])
+    ret = []
+
+    # let's search
+    for i, j in enumerate(queries):
+        tmpDist = 999999
+        for k in d:
+            if j == k:
+                continue
+            if d[j][0] / d[k][0] == 1 or d[j][1] / d[k][1] == 1:
+                dist = (d[j][0] - d[k][0])**2 + (d[j][1] - d[k][1])**2
+                if dist < tmpDist:
+                    tmpDist = k
+        if tmpDist == 999999:
+            tmpDist = "None"
+        ret.append(tmpDist)
+
+    print(ret)
+    
+
+numOfCities = 3
+cities = ['C1', 'C2', 'C3']
+xC = [3,2,1]
+yC = [3,2,3]
+numOfQueries = 3
+queries = ['C1', 'C2', 'C3']
+
+sol(numOfCities,cities, xC, yC, numOfQueries, queries)
