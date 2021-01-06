@@ -1,3 +1,24 @@
+def find_closest_brute_force(array):
+    
+    result = {}
+    result["p1"] = array[0]
+    result["p2"] = array[1]
+    result["distance"] = np.sqrt((array[0][0]-array[1][0])**2
+                                +(array[0][1]-array[1][1])**2)
+    
+    for i in range(len(array)-1):
+        for j in range(i+1, len(array)):
+            distance = np.sqrt((array[i][0]-array[j][0])**2
+                              +(array[i][1]-array[j][1])**2)
+            if distance < result["distance"]:
+                result["p1"] = array[i]
+                result["p2"] = array[j]
+                result["distance"] = distance
+    return result
+return result
+
+
+
 # A divide and conquer program in Python3 
 # to find the smallest distance from a 
 # given set of points. 
