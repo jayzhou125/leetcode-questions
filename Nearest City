@@ -1,32 +1,66 @@
-def sol(numOfCities, cities, xC, yC, numOfQueries, queries):
-    d = {}
-    # store them with the coordinates
-    for i, city in enumerate(cities):
-        d[city] = (xC[i], yC[i])
-    ret = []
+#If no cities found, return None instread of string "None" 
+def findNearestCities(numOfPoints: int, points: List[str], xCoordinates: List[int], yCoordinates: List[int],
+                      numOfQueries: int, queries: List[str]) -> List[str]:
+                          
+    # Naive way
+    # d = {}
+    # # store them with the coordinates
+    # for i, city in enumerate(cities):
+    #     d[city] = (xCoordinates[i], yCoordinates[i])
+    # ret = []
 
-    # let's search
-    for i, j in enumerate(queries):
-        tmpDist = 999999
-        for k in d:
-            if j == k:
-                continue
-            if d[j][0] / d[k][0] == 1 or d[j][1] / d[k][1] == 1:
-                dist = (d[j][0] - d[k][0])**2 + (d[j][1] - d[k][1])**2
-                if dist < tmpDist:
-                    tmpDist = k
-        if tmpDist == 999999:
-            tmpDist = "None"
-        ret.append(tmpDist)
+    # # let's search
+    # for i, j in enumerate(queries):
+    #     tmpDist = 999999
+    #     for k in d:
+    #         if j == k:
+    #             continue
+    #         if d[j][0] / d[k][0] == 1 or d[j][1] / d[k][1] == 1:
+    #             dist = (d[j][0] - d[k][0])**2 + (d[j][1] - d[k][1])**2
+    #             if dist < tmpDist:
+    #                 tmpDist = k
+    #     if tmpDist == 999999:
+    #         tmpDist = "None"
+    #     ret.append(tmpDist)
 
-    print(ret)
+    # return ret
     
+    
+    # better approach
+    class City:
+        def __init__(self, name, x, y):
+            self.name = name
+            self.x = x
+            self.y = y
+            
+        def dist(self, other_city):
+            return (self.x - other_city.x) ** 2 + (self.y - other_city.y) ** 2
 
-numOfCities = 3
-cities = ['C1', 'C2', 'C3']
-xC = [3,2,1]
-yC = [3,2,3]
-numOfQueries = 3
-queries = ['C1', 'C2', 'C3']
-
-sol(numOfCities,cities, xC, yC, numOfQueries, queries)
+    from collections import defaultdict
+    xs = defaultdict(list) # x_coordinate: [city]
+    ys = defaultdict(list)  
+    city_by_name = {}
+    for i in range(numOfCities):
+        name = cities[i]
+        city = City(name, xCoordinates[i], yCoordinates[i])
+        xs[city.x].append(city)
+        ys[city.y].append(city)
+        city_by_name[name] = city
+        
+    ans = []
+    cache = {}
+    for name in queries:
+        if name in cache:
+            ans.append(cache[name])
+            continue
+        city = city_by_name[name]
+        search_cities = xs[city.x] + ys[city.y]
+        if len(search_cities) == 2: # the target city itself is always in xs and ys, so if there are only two elements, no other city is in the list, we add NONE to the final result
+            ans.append('None')
+            continue
+        search_cities.sort(key=lambda x: x.dist(city))
+        closest = search_cities[2].name
+        ans.append(closest)
+        cache[city.name] = closest
+        cache[closest] = city.name
+    return ans
