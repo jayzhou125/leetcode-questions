@@ -9,6 +9,18 @@ def uniqueTwoSum(nums, target):
         ans.add(res)
     comp.add(n)
   return len(ans)
+
+# O(N)3
+def uniquePairs(nums, target):
+    ans = set()
+    comp = set()
+    for num in nums:
+        c = target - num
+        if c in comp:
+            res = (num, c) if num > c else (c, num)
+            ans.add(res)       
+        comp.add(num)
+    return len(ans)
   
 # O(N) 2
 def uniquePairs(nums, target):
@@ -22,3 +34,5 @@ def uniquePairs(nums, target):
             res[value]=index
 
     return len(out)
+  
+  
