@@ -1,0 +1,12 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        slow_runner = 0 # keep track of the distinct elements
+        
+        # fast_runner is to loop through nums one by one
+        for fast_runner in range(1, len(nums)):
+            # means we have triverse the duplicates for 
+            if nums[fast_runner] != nums[slow_runner]:
+                slow_runner = slow_runner + 1
+                nums[slow_runner] = nums[fast_runner]
+        
+        return slow_runner + 1 # plus one because index start with 0
