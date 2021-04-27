@@ -35,7 +35,7 @@ class Solution {
 		    if (s.indexOf(ch) == s.lastIndexOf(ch)) {
 			    return i;
 		    }
-	    }
+	}
 	    return -1;
     }
 }
