@@ -1,3 +1,4 @@
+# python
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         # First thought
@@ -23,3 +24,17 @@ class Solution:
                 return False
         
         return True
+#java
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        // sorting
+        // time complexity: o(nlogn)
+        // space complexity: o(nlogn)
+        if (s.length() != t.length()) return false;
+        char[] str1 = s.toCharArray();
+        char[] str2 = t.toCharArray();
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+        return Arrays.equals(str1, str2);
+    }
+}
