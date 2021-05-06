@@ -4,8 +4,8 @@ class Solution:
         # First thought
         # if len(s) != len(t): return False
         # s_arr_sorted = sorted(list(s))
-        # a_arr_sorted = sorted(list(t))
-        # if str(s_arr_sorted) == str(a_arr_sorted):
+        # t_arr_sorted = sorted(list(t))
+        # if str(s_arr_sorted) == str(t_arr_sorted):
         #     return True
         # return False
 
@@ -29,7 +29,7 @@ class Solution {
     public boolean isAnagram(String s, String t) {
         // sorting
         // time complexity: o(nlogn)
-        // space complexity: o(nlogn)
+        // space complexity: o(n)
         if (s.length() != t.length()) return false;
         char[] str1 = s.toCharArray();
         char[] str2 = t.toCharArray();
