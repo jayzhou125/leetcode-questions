@@ -26,6 +26,15 @@ class Solution {
 # Python
 class Solution:
     def reverse(self, x: int) -> int:
+        # normal approach
+        # x_abs_reverse = int(str(abs(x))[::-1])
+        # if x_abs_reverse >= (2**31)-1: return 0 # 2**31 = 2147483648
+        # return -1*x_abs_reverse if x < 0 else x_abs_reverse
+    
+        # use bit_length:
         x_abs_reverse = int(str(abs(x))[::-1])
-        if x_abs_reverse >= (2**31)-1: return 0 # 2**31 = 2147483648
+        # if need more than 32 bits to represent, return 0
+        if x_abs_reverse.bit_length() > 31: return 0 
         return -1*x_abs_reverse if x < 0 else x_abs_reverse
+    
+        
