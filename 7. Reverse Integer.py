@@ -26,7 +26,6 @@ class Solution {
 # Python
 class Solution:
     def reverse(self, x: int) -> int:
-        x_abs = abs(x)
-        x_abs = int(str(x_abs)[::-1])
-        if x_abs >= (2**31)-1: return 0 # 2**31 = 2147483648
-        return -1*x_abs if x < 0 else x_abs
+        x_abs_reverse = int(str(abs(x))[::-1])
+        if x_abs_reverse >= (2**31)-1: return 0 # 2**31 = 2147483648
+        return -1*x_abs_reverse if x < 0 else x_abs_reverse
