@@ -33,7 +33,7 @@ class Solution:
     
         # use bit_length:
         x_abs_reverse = int(str(abs(x))[::-1])
-        # if need more than 32 bits to represent, return 0
+        # if need more than 31 bits to represent, return 0
         if x_abs_reverse.bit_length() > 31: return 0 
         return -1*x_abs_reverse if x < 0 else x_abs_reverse
     
