@@ -12,8 +12,8 @@ class Solution:
         
         # using zip in python 
         # Create one iterator per string using zip, it will stop at the shortest string
-		# s is a tuple of characters at current position for each string
-		# create a set to test unicity
+	# s is a tuple of characters at current position for each string
+	# create a set to test unicity
         idx = 0
         for s in zip(*strs):
             if len(set(s)) != 1:
