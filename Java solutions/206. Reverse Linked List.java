@@ -17,11 +17,11 @@ class Solution {
         
         think the algorithm as change the pointing direction, 
         that way it will be easier to understand
-        eg. null->1->2->3->null 
-            null<-1->2->3->null
-            null<-1<-2->3->null
-            null<-1<-2<-3->null
-            null<-1<-2<-3<-null
+        eg. null -> 1 -> 2 -> 3 -> null 
+            null <- 1 -> 2 -> 3 -> null
+            null <- 1 <- 2 -> 3 -> null
+            null <- 1 <- 2 <- 3 -> null
+            null <- 1 <- 2 <- 3 <- null
         */
         ListNode prev = null;
         ListNode curr = head;
