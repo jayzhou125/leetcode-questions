@@ -10,6 +10,9 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        // one pass
+        // time complexity: o(n) one traversal of list of n nodes
+        // space complexity: o(1) only using constant extra space
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode fast = dummy;
